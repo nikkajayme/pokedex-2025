@@ -1,9 +1,8 @@
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="relative min-h-screen flex flex-col">
+    <div className="relative min-h-screen flex flex-col mx-5 md:mx-20 lg:mx-40">
       <nav>
-          <h1 className="absolute top-0 text-2xl font-bold">Pokédex</h1>
-        </nav>
+      </nav>
       <main className="flex flex-col items-center justify-center">
         {children}
       </main>
