@@ -1,9 +1,12 @@
 import Pokedex from './Pokedex';
+import { PokemonProvider } from './contexts/PokemonContext';
 
 function App() {
 
   return (
-    <Pokedex />
+    <PokemonProvider>
+      <Pokedex />
+    </PokemonProvider>
   )
 }
 
