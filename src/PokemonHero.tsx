@@ -80,7 +80,7 @@ const PokemonHero: React.FC<PokemonHeroProps> = ({
         style={{ color: dominantColor ?? 'blue' }}
         className={clsx(
           "w-screen absolute z-10 object-cover min-w-180",
-          selected ? "-bottom-20" : "-bottom-50",
+          selected ? "-bottom-20" : "-bottom-10",
         )}
       />
       {selected && (

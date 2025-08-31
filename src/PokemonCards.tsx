@@ -42,7 +42,7 @@ const PokemonCards: React.FC<PokemonCardsProps> = ({ pokemon }) => {
               Type:{' '}
               {poke.types.map((typeInfo) => typeInfo.type.name).join(', ')}
             </p>
-            <p>{poke.id}</p>
+            <p>ID:{' '}{poke.id}</p>
           </div>
         </li>
         </button>
