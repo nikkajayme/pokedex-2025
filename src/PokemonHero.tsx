@@ -2,6 +2,7 @@
 import Wave from './assets/wave.svg?react';
 import { useRef, useState, useEffect } from 'react';
 import { FastAverageColor } from 'fast-average-color';
+import clsx from 'clsx';
 // import wave from "./assets/wave.svg"
 
 interface Pokemon {
@@ -43,12 +44,16 @@ const PokemonHero: React.FC<PokemonHeroProps> = ({
 
     const handleLoad = async () => {
       try {
-        const color = await fac.getColorAsync(imgElement, {algorithm: 'dominant'});
+        const color = await fac.getColorAsync(imgElement, {
+          algorithm: 'sqrt',
+          mode: 'speed',
+          step: 5,
+        });
         const match = color.rgb.match(/\d+/g);
         const rgbArray = match ? match.map(Number) : [0, 0, 0];
-        const darkened = rgbArray.map((channel) => (channel * 35));
-        const darkenedColor = `rgb(${darkened.join(', ')})`;
-        // const darkenedColor = color.rgb
+        const darkened = rgbArray.map((channel) => (channel * 70) / 100);
+        const opacity = 0.7;
+        const darkenedColor = `rgba(${darkened.join(', ')}, ${opacity})`;
 
         setDominantColor(darkenedColor);
       } catch (error) {
@@ -67,21 +72,26 @@ const PokemonHero: React.FC<PokemonHeroProps> = ({
     }
   }, [currentPokemon, fac]);
 
+  console.log('Dominant Color:', dominantColor);
+
   return (
-    <div className="relative w-screen h-150 sm:h-96">
+    <div className="relative w-screen md:py-5 xl:py-10">
       <Wave
         style={{ color: dominantColor ?? 'blue' }}
-        className="w-screen min-h-150 sm:min-h-96 object-cover"
+        className={clsx(
+          "w-screen absolute z-10 object-cover min-w-180",
+          selected ? "-bottom-20" : "-bottom-50",
+        )}
       />
       {selected && (
-        <div className="mx-5 sm:mx-20 lg:mx-40 grid sm:grid-cols-2 h-full items-center relative z-10 text-white justify-center my-5">
+        <div className="relative z-20 grid grid-cols-2 text-white gap-6">
           <img
             ref={imgRef}
             src={currentPokemon.sprites.other['official-artwork'].front_default}
             alt={currentPokemon.name}
             width={200}
             height={200}
-            className="-mt-16 sm:mt-0 lg:ml-10"
+            className="-mt-16 sm:mt-0 lg:ml-10 justify-self-center"
             crossOrigin="anonymous"
           />
           <div className="text-xl leading-9 -mt-30 sm:mt-0">

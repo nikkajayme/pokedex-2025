@@ -26,7 +26,7 @@ const PokemonCards: React.FC<PokemonCardsProps> = ({ pokemon }) => {
   };
 
   return (
-    <ul className="px-5 md:px-20 lg:px-40 pt-20 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <ul className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
       {pokemon.map((poke) => (
         <button key={poke.id} onClick={() => handleClick(poke)}>
           <li>
