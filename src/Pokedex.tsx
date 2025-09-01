@@ -125,12 +125,6 @@ const Pokedex = () => {
     setCurrentPage(1);
   };
 
-  const resetFilters = () => {
-    setSearchQuery("");
-    setSelectedType("");
-    setCurrentPage(1);
-  };
-
   return (
     <Layout>
       <PokemonHero selected={selected} currentPokemon={currentPokemon} />
@@ -157,16 +151,6 @@ const Pokedex = () => {
             </option>
           ))}
         </select>
-
-        {(searchQuery || selectedType) && (
-          <button
-            type="button"
-            onClick={resetFilters}
-            className="px-4 py-2 bg-gray-500 text-white rounded"
-          >
-            Reset
-          </button>
-        )}
       </div>
 
       {/* 🧩 Pokémon Cards */}
