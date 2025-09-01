@@ -77,7 +77,7 @@ const PokemonHero: React.FC<PokemonHeroProps> = ({
   return (
     <div className="relative w-screen md:py-5 xl:py-10">
       <Wave
-        style={{ color: dominantColor ?? 'blue' }}
+        style={{ color: dominantColor ?? '#ffffff' }}
         className={clsx(
           "w-screen absolute z-10 object-cover min-w-180",
           selected ? "-bottom-20" : "-bottom-10",
