@@ -4,14 +4,6 @@ import Layout from "./Layout";
 import PokemonCards from "./PokemonCards";
 import clsx from "clsx";
 
-// selected boolean - done
-// currentpokemon - done
-// pagination - done
-// search bar
-// type dropdown
-// card randomizer per day
-// account
-
 const Pokedex = () => {
   const [allPokemonList, setAllPokemonList] = useState<any[]>([]);
   const [pokemonData, setPokemonData] = useState<any[]>([]);
@@ -24,8 +16,6 @@ const Pokedex = () => {
   const [selectedType, setSelectedType] = useState("");
 
   const [filterMenu, setFilterMenu] = useState(false);
-
-  console.log("Filter Menu:", filterMenu);
 
   useEffect(() => {
     const fetchAllPokemonList = async () => {
@@ -94,8 +84,6 @@ const Pokedex = () => {
     }
   }, [searchQuery, selectedType, currentPage, allPokemonList]);
 
-  console.log("Current Pokémon Data:", pokemonData);
-
   const totalFiltered = (() => {
     if (selectedType) {
       return pokemonData.length < itemsPerPage
@@ -113,24 +101,18 @@ const Pokedex = () => {
     setCurrentPage(1);
   };
 
-  // const onTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setSelectedType(e.target.value);
-  //   setCurrentPage(1);
-  // };
-
   const handleTypeChange = (type: string) => {
-    setSelectedType(type); // or whatever you're doing with it
+    setSelectedType(type);
   };
 
   const filteredTypes = types.filter(
     (type) => type !== "unknown" && type !== "stellar"
   );
 
-  console.log("Selected Type:", selectedType);
-
+  console.log(pokemonData)
   return (
     <Layout>
-      <div className="absolute z-40 w-full flex lg:flex-row sm:flex-col flex-row xl:h-12 top-0 gap-3">
+      <div className="absolute z-40 w-full xl:min-w-250 flex lg:flex-row sm:flex-col flex-row xl:h-12 top-0 gap-3">
         <input
           type="text"
           value={searchQuery}
@@ -139,7 +121,7 @@ const Pokedex = () => {
           className="px-6 py-3 w-50 sm:w-70 bg-gray-300 rounded-4xl placeholder-gray-700/50 text-gray-900 active:outline-none focus:outline-none h-12"
           name="search"
         />
-        <div className="relative">
+        <div className="relative cursor-pointer">
           <div className="relative w-full">
             <div
               className={clsx(
@@ -168,7 +150,7 @@ const Pokedex = () => {
             )}
 
             {selectedType && !filterMenu && (
-              <div className="bg-[#b59110] rounded-full p-2 absolute top-1.5 left-12 shadow-lg">
+              <div className="bg-[#b59110] rounded-full p-2 absolute top-1.5 left-12 shadow-lg hover">
                 <img
                   src={`/types/${selectedType.toLowerCase()}.svg`}
                   alt={selectedType}
@@ -208,10 +190,12 @@ const Pokedex = () => {
           )}
         </div>
       </div>
-      <PokemonCards pokemon={pokemonData} />
+      {pokemonData.length > 1 ? <PokemonCards pokemon={pokemonData} /> : (
+        <p className="text-white font-mono font-medium flex items-center justify-center align-middle justify-items-center gap-6 max-w-250 lg:py-20 sm:py-40 py-20 relative z-30 h-130">oops there are no pokemons here</p>
+      )}
       <div className="z-20 flex justify-center items-center gap-4">
         <button
-          className="px-6 py-2 bg-[#20427A] text-white rounded-3xl disabled:bg-[#142747] disabled:text-white/50"
+          className="px-6 py-2 bg-[#20427A] text-white rounded-3xl disabled:bg-[#142747] disabled:text-white/50 hover:scale-105 transform transition duration-200 disabled:scale-100"
           onClick={() => setCurrentPage((prev) => prev - 1)}
           disabled={currentPage === 1}
         >
@@ -223,7 +207,7 @@ const Pokedex = () => {
         </span>
 
         <button
-          className="px-6 py-2 bg-[#20427A] text-white disabled:opacity-30 rounded-3xl"
+          className="px-6 py-2 bg-[#20427A] text-white disabled:opacity-30 rounded-3xl hover:scale-105 transform transition duration-200 disabled:scale-100"
           onClick={() => setCurrentPage((prev) => prev + 1)}
           disabled={currentPage * itemsPerPage >= totalFiltered}
         >

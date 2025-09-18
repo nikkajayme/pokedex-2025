@@ -67,3 +67,7 @@ export default tseslint.config([
   },
 ])
 ```
+
+## Find the live website here
+
+https://pokedex-2025-neon.vercel.app/

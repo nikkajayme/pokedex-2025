@@ -54,7 +54,7 @@ const PokemonCards: React.FC<PokemonCardsProps> = ({ pokemon }) => {
   };
 
   return (
-    <ul className="text-white font-mono font-medium grid xl:grid-cols-5 sm:grid-cols-3 md:grid-cols-4 grid-cols-1 items-center justify-center align-middle justify-items-center gap-6 max-w-250 lg:py-20 sm:py-40 py-20 relative z-30">
+    <ul className="text-white font-sans font-medium grid xl:grid-cols-5 sm:grid-cols-3 md:grid-cols-4 grid-cols-1 items-center justify-center align-middle justify-items-center gap-6 max-w-250 lg:py-20 sm:py-40 py-20 relative z-30">
       {pokemon.map((poke) => {
         const bgColor = colors[poke.id] || "#f0f0f0";
         const formatNum = (num: number) => {
@@ -77,7 +77,7 @@ const PokemonCards: React.FC<PokemonCardsProps> = ({ pokemon }) => {
               <div className="relative items-center text-center flex flex-col">
                 <div className="flex text-sm absolute -top-10 w-full justify-between">
                   <h2>{poke.name}</h2>
-                  <p>{formatNum(poke.id)}</p>
+                  <p className="font-light">{formatNum(poke.id)}</p>
                 </div>
 
                 <img
