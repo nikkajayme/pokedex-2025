@@ -111,7 +111,7 @@ const PokemonDetail = () => {
               {pokemon.types.map((typeInfo) => (
                 <li
                   key={typeInfo.type.name}
-                  className="bg-[#b59110] rounded-4xl p-2 shadow-md"
+                  className="bg-[#336BB3] rounded-4xl p-2 shadow-md"
                 >
                   <img
                       src={`/types/${typeInfo.type.name.toLowerCase()}.svg`}
@@ -124,9 +124,9 @@ const PokemonDetail = () => {
           </div>
         </div>
 
-        <div className="w-full">
+        <div className="w-full h-full flex flex-col justify-start">
           <h2 className="text-xl font-semibold mb-2">Stats:</h2>
-          <ul className="py-10 space-y-1">
+          <ul className="py-10 space-y-1 my-auto">
             {pokemon.stats.map((stat) => (
               <li key={stat.stat.name} className="flex justify-between">
                 <span className="capitalize">{stat.stat.name}</span>
@@ -135,7 +135,7 @@ const PokemonDetail = () => {
             ))}
           </ul>
         </div>
-        <button className="font-medium mx-auto col-start-1 col-end-3 text-white border border-[#f2f2f2] bg-gray-700/30 rounded-3xl px-7 py-2 shadow-lg" onClick={() => navigate(-1)}>Go Back</button>
+        <button className="font-medium mx-auto col-start-1 col-end-3 text-white border border-[#f2f2f2] bg-gray-700/30 rounded-3xl px-7 py-2 shadow-lg hover:scale-105 transform transition duration-200" onClick={() => navigate(-1)}>Go Back</button>
       </div>
       
     </Layout>
